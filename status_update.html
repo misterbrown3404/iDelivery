@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Delivery Status</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h2>Update Delivery Status</h2>
+
+    <select id="delivery_status">
+        <option value="waiting">Waiting</option>
+        <option value="in_progress">In Progress</option>
+        <option value="delivered">Delivered</option>
+    </select>
+
+    <button id="update_status">Update Status</button>
+
+    <script>
+        $('#update_status').click(function() {
+            var status = $('#delivery_status').val();
+            var deliveryId = 1; // Replace this with actual delivery ID
+
+            $.ajax({
+                url: 'update_status.php',
+                type: 'POST',
+                data: { delivery_id: deliveryId, status: status },
+                success: function(response) {
+                    alert(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
